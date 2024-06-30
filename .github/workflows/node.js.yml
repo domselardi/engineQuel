@@ -35,5 +35,10 @@ jobs:
     - name: Set environment variable
       run: echo "FLOWISEAI_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
     - run: echo 'simplu----> ${FLOWISEAI_VERSION}'
-    - run: echo 'dublu----> ${env.FLOWISEAI_VERSION}'
+    - run: echo "${{ env.FLOWISEAI_VERSION }}"
+    - run: echo $env.FLOWISEAI_VERSION }}
+    - run: tar -czf "/home/runner/work/engineQuel/${{ env.FLOWISEAI_VERSION }}.tar.gz" /home/runner/work/engineQuel/engineQuel/*
+    - run: |
+        cd /home/runner/work/engineQuel/engineQuel
+        ls ./
     
