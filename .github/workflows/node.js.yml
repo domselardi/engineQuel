@@ -33,12 +33,15 @@ jobs:
         cd /home/runner/work/engineQuel/engineQuel
         ls ./
     - name: Set environment variable
-      run: echo "FLOWISEAI_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
-    - run: echo 'simplu----> ${FLOWISEAI_VERSION}'
-    - run: echo "${{ env.FLOWISEAI_VERSION }}"
-    - run: echo $env.FLOWISEAI_VERSION }}
-    - run: tar -czf "/home/runner/work/engineQuel/${{ env.FLOWISEAI_VERSION }}.tar.gz" /home/runner/work/engineQuel/engineQuel/*
+      run: echo "pkgx_version=$(npm pkg get version | tr -d '"')" >> $GITHUB_ENV
+    - run: echo ${{ env.pkgx_version }}
+    - run: tar -czf "/home/runner/work/engineQuel/${{ env.pkgx_version }}.tar.gz" /home/runner/work/engineQuel/engineQuel/*
     - run: |
-        cd /home/runner/work/engineQuel/engineQuel
+        cd /home/runner/work/engineQuel
         ls ./
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: "koko_v${{ env.pkgx_version }}"
+        path: "/home/runner/work/engineQuel/${{ env.pkgx_version }}.tar.gz"
     
