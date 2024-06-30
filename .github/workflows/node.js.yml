@@ -35,8 +35,10 @@ jobs:
     - name: Set environment variable
       run: echo "pkgx_version=$(npm pkg get version | tr -d '"')" >> $GITHUB_ENV
     - run: echo ${{ env.pkgx_version }}
-    - run: tar -czf "/home/runner/work/engineQuel/tram_v${{ env.pkgx_version }}.tar.gz" /home/runner/work/engineQuel/engineQuel/*
     - run: |
+        rm -rf /home/runner/work/engineQuel/*.tar.gz
+        rm -rf /home/runner/work/engineQuel/*.zip
+        tar -czf "/home/runner/work/engineQuel/tram_v${{ env.pkgx_version }}.tar.gz" /home/runner/work/engineQuel/engineQuel/*
         cd /home/runner/work/engineQuel
         ls ./
     - name: Upload artifact
