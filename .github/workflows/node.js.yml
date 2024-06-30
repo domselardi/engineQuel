@@ -35,13 +35,13 @@ jobs:
     - name: Set environment variable
       run: echo "pkgx_version=$(npm pkg get version | tr -d '"')" >> $GITHUB_ENV
     - run: echo ${{ env.pkgx_version }}
-    - run: tar -czf "/home/runner/work/engineQuel/${{ env.pkgx_version }}.tar.gz" /home/runner/work/engineQuel/engineQuel/*
+    - run: tar -czf "/home/runner/work/engineQuel/tram_v${{ env.pkgx_version }}.tar.gz" /home/runner/work/engineQuel/engineQuel/*
     - run: |
         cd /home/runner/work/engineQuel
         ls ./
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: "koko_v${{ env.pkgx_version }}"
-        path: "/home/runner/work/engineQuel/${{ env.pkgx_version }}.tar.gz"
+        name: "tram_v${{ env.pkgx_version }}"
+        path: "/home/runner/work/engineQuel/tram_v${{ env.pkgx_version }}.tar.gz"
     
