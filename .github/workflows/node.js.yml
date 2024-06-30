@@ -41,7 +41,11 @@ jobs:
         ls ./
     - name: Upload artifact
       uses: actions/upload-artifact@v4
+      id: artifact-upload-step
       with:
         name: "tram_v${{ env.pkgx_version }}"
         path: "/home/runner/work/engineQuel/tram_v${{ env.pkgx_version }}.tar.gz"
+        compression-level: 0 # no compression
+    - name: Output artifact ID
+      run:  echo 'Artifact ID is ${{ steps.artifact-upload-step.outputs.artifact-id }}'
     
