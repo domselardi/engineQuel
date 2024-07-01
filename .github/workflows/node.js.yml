@@ -25,7 +25,7 @@ jobs:
         echo "pkgx_version=$(npm pkg get version | tr -d '"')" >> $GITHUB_ENV
     - name: Create Artifact Zip File
       if: ${{ contains(github.event.head_commit.message, 'staging_release_test') }}
-      run: tar -czvf "/home/runner/work/engineQuel/tram_v${{ env.pkgx_version }}.tar.gz" -C /home/runner/work/engineQuel/ engineQuel
+      run: tar -czf "/home/runner/work/engineQuel/tram_v${{ env.pkgx_version }}.tar.gz" -C /home/runner/work/engineQuel/ engineQuel
     - name: Upload artifact
       if: ${{ contains(github.event.head_commit.message, 'staging_release_test') }}
       uses: actions/upload-artifact@v4
